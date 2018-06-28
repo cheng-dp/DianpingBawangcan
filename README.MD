@@ -13,4 +13,6 @@ wget -c https://chromedriver.storage.googleapis.com/2.40/chromedriver_linux64.zi
 unzip chromedriver_linux64.zip
 sudo cp chromedriver /usr/bin
 
-5. run python Main.py
+5. run python Main.py, the program will start.
+
+6. use crontab to set schedule start to run.sh so that it will run everyday.
