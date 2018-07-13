@@ -97,8 +97,8 @@ class Bawangcan:
 
     def sign_for_category(self, category_id, location):
         # count total
-        js = 'window.open("http://s.dianping.com/event/' + location + '");'
-        self.driver.execute_script(js)
+        #js = 'window.open("http://s.dianping.com/event/' + location + '");'
+        #self.driver.execute_script(js)
         self.driver.switch_to.window(self.driver.window_handles[-1])
 
         category_tag = WebDriverWait(self.driver, 5).until(
@@ -127,7 +127,7 @@ class Bawangcan:
         basePage = self.driver.current_window_handle
 
         # open each page to sign
-        for fish in fishes:
+        for fish in fishes[0:3]:
             self.driver.switch_to.window(basePage)
             fish.click()
             self.driver.switch_to.window(self.driver.window_handles[-1])
@@ -137,7 +137,7 @@ class Bawangcan:
             self.wait_a_while()
             self.sign_for_each()
             self.driver.close()
-        self.driver.close()
+            print "close the current sign window"
 
     def sign_for_each(self):
         # get title
@@ -186,3 +186,5 @@ class Bawangcan:
 
     def wait_a_small_while(self):
         time.sleep(random.randint(1, 3))
+    def quit(self):
+        self.driver.quit()
