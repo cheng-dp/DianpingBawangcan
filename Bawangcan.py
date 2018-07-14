@@ -20,7 +20,6 @@ class Bawangcan:
     pw = ""
 
     def __init__(self, phone, pw):
-        self.init_chrome()
         self.phone = phone
         self.pw = pw
         reload(sys)

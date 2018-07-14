@@ -3,6 +3,7 @@ from Bawangcan import Bawangcan
 
 if __name__ == '__main__':
     bawangcan = Bawangcan("phone", "password")
+    bawangcan.init_chrome_headless()
     cookies = [{
         'name': 'dper',
         'value': '629c3b997801cfae3b36021d21ba415844a507847a7cd5aa9d5e14c3d72a1046e959ee4e33214a08e88bf9a434f0ffa3fc07abec5c02ef0b4934ca275a40e3f26811ee92144cbbd0f4470d93b7f2601acf5453e8e2334e9a7c6500ee16'
