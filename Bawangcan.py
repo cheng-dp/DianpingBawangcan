@@ -11,6 +11,7 @@ from selenium.webdriver.support.ui import Select
 import time
 import random
 import os
+import sys
 
 class Bawangcan:
 
@@ -22,6 +23,8 @@ class Bawangcan:
         self.init_chrome()
         self.phone = phone
         self.pw = pw
+        reload(sys)
+        sys.setdefaultencoding('utf8')
 
     def init_chrome_headless(self):
         chrome_options = Options()
@@ -95,7 +98,7 @@ class Bawangcan:
         except TimeoutException:
             print "no need to input captcha code"
 
-    def sign_for_category(self, category_id, location):
+    def sign_for_category(self, category_id, location, filterChild):
         # count total
         #js = 'window.open("http://s.dianping.com/event/' + location + '");'
         #self.driver.execute_script(js)
@@ -135,17 +138,20 @@ class Bawangcan:
             print "url = " + urlName
 
             self.wait_a_while()
-            self.sign_for_each()
+            self.sign_for_each(filterChild)
             self.driver.close()
             print "close the current sign window"
 
-    def sign_for_each(self):
+    def sign_for_each(self, filterChild):
         # get title
         title = ""
         try:
             titleEle = self.driver.find_element_by_css_selector('#J_activityTitle')
             title = "[" + titleEle.text + "]"
             print "title = " + title
+            if self.isContainChild(title) and filterChild:
+                print "Child tag in title, return."
+                return
         except NoSuchElementException:
             print "cannot get page title"
             title = "unknown"
@@ -186,5 +192,16 @@ class Bawangcan:
 
     def wait_a_small_while(self):
         time.sleep(random.randint(1, 3))
+
+    def isContainChild(self,title):
+        childFlag = False
+        if "儿童" in title:
+            childFlag = True
+        if "少儿" in title:
+            childFlag = True
+        if "幼儿" in title:
+            childFlag = True
+        return childFlag
+
     def quit(self):
         self.driver.quit()
