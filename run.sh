@@ -1,2 +1,3 @@
 #!/bin/bash
-python Main.py &> output.txt
+date &> output.txt
+python Main.py >> output.txt
