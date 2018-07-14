@@ -130,7 +130,7 @@ class Bawangcan:
         basePage = self.driver.current_window_handle
 
         # open each page to sign
-        for fish in fishes[0:3]:
+        for fish in fishes:
             self.driver.switch_to.window(basePage)
             fish.click()
             self.driver.switch_to.window(self.driver.window_handles[-1])
